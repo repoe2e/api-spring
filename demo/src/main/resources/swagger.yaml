@@ -1,0 +1,79 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: E2E Treinamentos - Administrar Usuários
+  description: API para gerenciamento de usuários
+
+basePath: /api
+schemes:
+  - http
+host: localhost:8080
+
+paths:
+  /users:
+    post:
+      tags:
+        - User
+      summary: Cadastrar um novo usuário
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: Objeto do usuário a ser cadastrado
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        201:
+          description: Usuário cadastrado com sucesso!
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        400:
+          description: Erro na requisição.
+          schema:
+            $ref: "#/definitions/ApiResponse"
+    get:
+      tags:
+        - User
+      summary: Obter a lista de usuários
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Lista de usuários obtida com sucesso!
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+            
+  /users/delete:
+    delete:
+      tags:
+        - User
+      summary: Deletar todos os usuários
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Todos os usuários foram deletados com sucesso!
+          schema:
+          
+        404:
+          description: Lista de usuários já está vazia.
+          schema:
+           
+
+definitions:
+  User:
+    type: object
+    properties:
+      usuario:
+        type: string
+  ApiResponse:
+    type: object
+    properties:
+      message:
+        type: string
