@@ -41,6 +41,14 @@ Abra o prompt e execute o comando: mvn -version
 6. Não esqueça de configurar as variáveis de ambiente Java e Maven 
 
 
+## Documentação da API
+
+A documentação da API pode ser encontrada em [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
+
+Utilize a documentação para explorar os endpoints, parâmetros e respostas da API.
+
+
+
 ## Executando o Projeto
 
 Para executar o projeto, siga as etapas abaixo:
