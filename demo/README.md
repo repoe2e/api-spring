@@ -28,14 +28,15 @@ Siga as etapas abaixo para configurar o ambiente de desenvolvimento:
 1. Clone este repositório para sua máquina local.
 Abra o terminal ou prompt de comando e navegue até o diretório onde deseja clonar o projeto. Em seguida, execute o comando:
 
-
 git clone <URL do repositório>
 
 3. Certifique-se de ter o JDK instalado e configurado corretamente.
-java -version
+
+Abra o prompt e execute o comando: java -version
 
 5. Certifique-se de ter o Apache Maven instalado e configurado corretamente.
-mvn -version
+
+Abra o prompt e execute o comando: mvn -version
 
 
 ## Executando o Projeto
