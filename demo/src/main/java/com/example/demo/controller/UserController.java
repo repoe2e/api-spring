@@ -34,7 +34,7 @@ public class UserController {
 
 		String usuario = user.getUsuario().trim();
 		int usuarioLength = usuario.length();
-		if (usuarioLength < 4 || usuarioLength > 20) {
+		/*if (usuarioLength < 4 || usuarioLength > 20) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário deve ter entre 5 e 20 caracteres.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
@@ -44,12 +44,12 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}*/
 
-		for (User existingUser : userList) {
+		/*for (User existingUser : userList) {
 			if (existingUser.getUsuario().equals(user.getUsuario())) {
 				ApiResponse errorResponse = new ApiResponse("Nome de usuário já existe.");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 			}
-		}
+		}*/
 
 		userList.add(user);
 
@@ -80,7 +80,7 @@ public class UserController {
 
 		userList.clear();
 
-		ApiResponse response = new ApiResponse("Todos os usuários foram deletados com sucesso!");
+		ApiResponse response = new ApiResponse("Todos os usuários foram deletados sem sucesso!");
 		return ResponseEntity.ok(response);
 	}
 
