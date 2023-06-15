@@ -43,7 +43,7 @@ Abra o prompt e execute o comando: mvn -version
 
 ## Documentação da API
 
-A documentação da API pode ser encontrada em [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
+A documentação da API pode ser encontrada em [http://localhost:8080/swagger.html](http://localhost:8080/swagger.html).
 
 Utilize a documentação para explorar os endpoints, parâmetros e respostas da API.
 
