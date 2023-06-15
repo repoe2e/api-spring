@@ -39,6 +39,47 @@ Abra o prompt e execute o comando: java -version
 Abra o prompt e execute o comando: mvn -version
 
 
+Siga as etapas abaixo para configurar as variáveis de ambiente para o Java e o Maven:
+
+- Configurando as Variáveis de Ambiente para o Java:
+
+  - **Windows:**
+
+    ```
+    set PATH=%PATH%;C:\caminho\para\o\jdk\bin
+    ```
+
+    Substitua `C:\caminho\para\o\jdk` pelo caminho de instalação do JDK no seu sistema.
+
+  - **Linux/Mac:**
+
+    ```
+    export PATH=$PATH:/caminho/para/o/jdk/bin
+    ```
+
+    Substitua `/caminho/para/o/jdk` pelo caminho de instalação do JDK no seu sistema.
+
+- Configurando as Variáveis de Ambiente para o Maven:
+
+  - **Windows:**
+
+    ```
+    set PATH=%PATH%;C:\caminho\para\o\maven\bin
+    ```
+
+    Substitua `C:\caminho\para\o\maven` pelo caminho de instalação do Maven no seu sistema.
+
+  - **Linux/Mac:**
+
+    ```
+    export PATH=$PATH:/caminho/para/o/maven/bin
+    ```
+
+    Substitua `/caminho/para/o/maven` pelo caminho de instalação do Maven no seu sistema.
+
+
+
+
 ## Executando o Projeto
 
 Para executar o projeto, siga as etapas abaixo:
