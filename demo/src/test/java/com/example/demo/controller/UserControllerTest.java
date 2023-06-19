@@ -1,15 +1,13 @@
 package com.example.demo.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.example.demo.model.ApiResponse;
 import com.example.demo.model.User;
 
 public class UserControllerTest {
