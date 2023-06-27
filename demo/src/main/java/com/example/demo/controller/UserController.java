@@ -22,18 +22,16 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
 	
-	
-
 	private List<User> userList = new ArrayList<>();
 
 	@ApiOperation("Cadastrar um novo usuário")
 	@PostMapping
 	public ResponseEntity<ApiResponse> cadastrarUsuario(@RequestBody User user) {
-		/*if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
+		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
-
+		/*
 		String usuario = user.getUsuario().trim();
 		int usuarioLength = usuario.length();
 		if (usuarioLength < 4 || usuarioLength > 20) {
