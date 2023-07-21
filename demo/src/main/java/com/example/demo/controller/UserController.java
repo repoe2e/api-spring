@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.User;
 import io.swagger.annotations.ApiOperation;
 
- 
-
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
-	
+
 	private List<User> userList = new ArrayList<>();
 
 	@ApiOperation("Cadastrar um novo usuário")
@@ -31,7 +29,17 @@ public class UserController {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
-		/*
+
+		if (user.getSenha() == null || user.getSenha().trim().isEmpty()) {
+			ApiResponse errorResponse = new ApiResponse("A senha é obrigatória.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+
+		if (user.getNomeCompleto() == null || user.getNomeCompleto().trim().isEmpty()) {
+			ApiResponse errorResponse = new ApiResponse("O nome completo é obrigatório.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+		}
+
 		String usuario = user.getUsuario().trim();
 		int usuarioLength = usuario.length();
 		if (usuarioLength < 4 || usuarioLength > 20) {
@@ -42,7 +50,7 @@ public class UserController {
 		if (!user.getUsuario().matches("^[a-zA-Z]+$")) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário só pode conter letras.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}*/
+		}
 
 		for (User existingUser : userList) {
 			if (existingUser.getUsuario().equals(user.getUsuario())) {
@@ -68,9 +76,8 @@ public class UserController {
 			return ResponseEntity.ok(userList);
 		}
 	}
-	
-	
-	 @ApiOperation("Deletar todos os usuários")
+
+	@ApiOperation("Deletar todos os usuários")
 	@DeleteMapping
 	public ResponseEntity<ApiResponse> deletarUsuarios() {
 		if (userList.isEmpty()) {
