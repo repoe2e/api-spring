@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.ApiResponse;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,21 +12,39 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.ApiResponse;
 import com.example.demo.model.User;
+import com.example.demo.service.AuthenticationService;
+
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
+	
+	 // Injetando o serviço de autenticação
+    @Autowired
+    private AuthenticationService authService;
+
 
 	private List<User> userList = new ArrayList<>();
 
 	@ApiOperation("Cadastrar um novo usuário")
 	@PostMapping
-	public ResponseEntity<ApiResponse> cadastrarUsuario(@RequestBody User user) {
+	public ResponseEntity<ApiResponse> cadastrarUsuario(@RequestBody User user,
+			 @RequestHeader("Authorization") String authorizationHeader) {
+		
+		 // Verifica se o usuário está autenticado
+        if (!isAuthenticated(authorizationHeader)) {
+            ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        }
+        
 		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
@@ -90,5 +110,20 @@ public class UserController {
 		ApiResponse response = new ApiResponse("Todos os usuários foram deletados sem sucesso!");
 		return ResponseEntity.ok(response);
 	}
+	
+	 private boolean isAuthenticated(String authorizationHeader) {
+	        // Extrai as credenciais do cabeçalho de autorização (Basic Authentication)
+	        String base64Credentials = authorizationHeader.substring("Basic".length()).trim();
+	        byte[] decoded = Base64.getDecoder().decode(base64Credentials);
+	        String credentials = new String(decoded);
+
+	        // Separa o usuário e a senha das credenciais
+	        String[] values = credentials.split(":", 2);
+	        String username = values[0];
+	        String password = values[1];
+
+	        // Verifica a autenticação utilizando o serviço de autenticação
+	        return authService.isAuthenticated(username, password);
+	    }
 
 }
