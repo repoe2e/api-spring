@@ -37,13 +37,13 @@ public class UserController {
 	@ApiOperation("Cadastrar um novo usuário")
 	@PostMapping
 	public ResponseEntity<ApiResponse> cadastrarUsuario(@RequestBody User user,
-			 @RequestHeader("Authorization") String authorizationHeader) {
+			 @RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
 		
-		 // Verifica se o usuário está autenticado
-        if (!isAuthenticated(authorizationHeader)) {
-            ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-        }
+		 // Verifica se o cabeçalho de autorização está presente
+	    if (authorizationHeader == null || authorizationHeader.isEmpty()) {
+	        ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+	    }
         
 		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
