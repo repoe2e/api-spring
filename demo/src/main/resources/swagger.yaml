@@ -26,15 +26,21 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/User"
+        - in: header
+          name: Authorization
+          type: string
+          required: false
+          description: Cabeçalho de autorização (Basic Authentication)
       responses:
         201:
           description: Usuário cadastrado com sucesso!
           schema:
             $ref: "#/definitions/ApiResponse"
         400:
-          description: Erro na requisição.
+          description: Erro ao cadastrar usuário, validar mensagem de acordo com a regra de negócio.
           schema:
             $ref: "#/definitions/ApiResponse"
+
     get:
       tags:
         - User
@@ -48,8 +54,8 @@ paths:
             type: array
             items:
               $ref: "#/definitions/User"
-            
-  /users/delete:
+
+  /api/users/delete:
     delete:
       tags:
         - User
@@ -60,17 +66,21 @@ paths:
         200:
           description: Todos os usuários foram deletados com sucesso!
           schema:
-          
+            $ref: "#/definitions/ApiResponse"
         404:
-          description: Lista de usuários já está vazia.
+          description: Nenhum usuário encontrado para deletar.
           schema:
-           
+            $ref: "#/definitions/ApiResponse"
 
 definitions:
   User:
     type: object
     properties:
       usuario:
+        type: string
+      senha:
+        type: string
+      nomeCompleto:
         type: string
   ApiResponse:
     type: object

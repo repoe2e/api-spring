@@ -20,31 +20,48 @@ import com.example.demo.model.ApiResponse;
 import com.example.demo.model.User;
 import com.example.demo.service.AuthenticationService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/users")
+@Api(tags = "Usuários", description = "Operações relacionadas a usuários")
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
-	
-	 // Injetando o serviço de autenticação
-    @Autowired
-    private AuthenticationService authService;
 
-
+	// Injetando o serviço de autenticação
+	@Autowired
+	private AuthenticationService authService;
 	private List<User> userList = new ArrayList<>();
+
+	@Autowired
+	public UserController(AuthenticationService authService) {
+		this.authService = authService;
+	}
+
+	// Construtor padrão (sem parâmetros)
+	public UserController() {
+		this.userList = new ArrayList<>();
+	}
+
+	// Construtor adicional com a lista de usuários como parâmetro
+	public UserController(List<User> userList) {
+		this.userList = userList;
+	}
+	
+	
 
 	@ApiOperation("Cadastrar um novo usuário")
 	@PostMapping
 	public ResponseEntity<ApiResponse> cadastrarUsuario(@RequestBody User user,
-			 @RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
-		
-		 // Verifica se o cabeçalho de autorização está presente
-	    if (authorizationHeader == null || authorizationHeader.isEmpty()) {
-	        ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-	    }
-        
+			@RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
+
+		// Verifica se o cabeçalho de autorização está presente
+		if (authorizationHeader == null || authorizationHeader.isEmpty()) {
+			ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+		}
+
 		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
@@ -110,20 +127,20 @@ public class UserController {
 		ApiResponse response = new ApiResponse("Todos os usuários foram deletados sem sucesso!");
 		return ResponseEntity.ok(response);
 	}
-	
-	 private boolean isAuthenticated(String authorizationHeader) {
-	        // Extrai as credenciais do cabeçalho de autorização (Basic Authentication)
-	        String base64Credentials = authorizationHeader.substring("Basic".length()).trim();
-	        byte[] decoded = Base64.getDecoder().decode(base64Credentials);
-	        String credentials = new String(decoded);
 
-	        // Separa o usuário e a senha das credenciais
-	        String[] values = credentials.split(":", 2);
-	        String username = values[0];
-	        String password = values[1];
+	private boolean isAuthenticated(String authorizationHeader) {
+		// Extrai as credenciais do cabeçalho de autorização (Basic Authentication)
+		String base64Credentials = authorizationHeader.substring("Basic".length()).trim();
+		byte[] decoded = Base64.getDecoder().decode(base64Credentials);
+		String credentials = new String(decoded);
 
-	        // Verifica a autenticação utilizando o serviço de autenticação
-	        return authService.isAuthenticated(username, password);
-	    }
+		// Separa o usuário e a senha das credenciais
+		String[] values = credentials.split(":", 2);
+		String username = values[0];
+		String password = values[1];
+
+		// Verifica a autenticação utilizando o serviço de autenticação
+		return authService.isAuthenticated(username, password);
+	}
 
 }

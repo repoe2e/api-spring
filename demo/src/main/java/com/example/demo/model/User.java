@@ -1,6 +1,6 @@
 package com.example.demo.model;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +14,14 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
-	
     @NonNull
     private String usuario;
-    
+
     @NonNull
     private String senha;
 
     private String nomeCompleto;
-    
-   
+
     // Remova os construtores redundantes
 
     // Getter e Setter para o campo 'usuario'
@@ -34,7 +32,7 @@ public class User {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
+
     // Getter e Setter para o campo 'senha'
     public String getSenha() {
         return senha;

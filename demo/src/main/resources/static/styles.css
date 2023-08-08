@@ -1,0 +1,84 @@
+/* styles.css */
+
+/* Estilo para o cabeçalho */
+header {
+  background-color: #9aff9a; /* Verde claro */
+  text-align: center;
+  padding: 20px 0;
+}
+
+header h1 {
+  color: #000; /* Preto */
+}
+
+/* Estilo para o formulário */
+.form-container {
+  max-width: 400px; /* Largura máxima do formulário */
+  margin: 0 auto; /* Centralizar horizontalmente */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 8px;
+}
+
+form input,
+form button {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #9aff9a; /* Verde claro */
+  color: #000; /* Preto */
+  cursor: pointer;
+}
+
+/* Estilo para a lista de usuários */
+main {
+  max-width: 600px; /* Largura máxima da área principal */
+  margin: 0 auto; /* Centralizar horizontalmente */
+  padding: 20px;
+}
+
+main h2 {
+  margin-bottom: 16px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+/* Estilo para o rodapé */
+footer {
+  background-color: #9aff9a; /* Verde claro */
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer p {
+  color: #000; /* Preto */
+}
+
+/* Estilo para o link no rodapé */
+footer a {
+  color: #000; /* Preto */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
