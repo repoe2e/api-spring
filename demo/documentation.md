@@ -39,3 +39,7 @@ Representa a resposta da API.
 
 Propriedades:
 - message (string): A mensagem da resposta.
+  
+### Usuário e senha para autenticar api
+USERNAME = "e2etreinamentos";
+PASSWORD = "e2e@123";
