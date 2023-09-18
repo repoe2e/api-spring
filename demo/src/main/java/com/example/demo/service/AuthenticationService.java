@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
 
+	
+	//dados de segurança
 	private static final String USERNAME = "e2etreinamentos";
 	private static final String PASSWORD = "e2e@123";
 
