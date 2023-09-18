@@ -16,6 +16,7 @@ public class User {
 
     @NonNull
     private String usuario;
+    
 
     @NonNull
     private String senha;
