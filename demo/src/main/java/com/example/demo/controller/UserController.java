@@ -62,7 +62,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 
-		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
+	/*	if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
@@ -87,7 +87,7 @@ public class UserController {
 		if (!user.getUsuario().matches("^[a-zA-Z]+$")) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário só pode conter letras.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}
+		}*/
 
 		for (User existingUser : userList) {
 			if (existingUser.getUsuario().equals(user.getUsuario())) {
