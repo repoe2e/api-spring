@@ -91,14 +91,14 @@ public class UserController {
 
 		for (User existingUser : userList) {
 			if (existingUser.getUsuario().equals(user.getUsuario())) {
-				ApiResponse errorResponse = new ApiResponse("Nome de usuário já existe.");
+				ApiResponse errorResponse = new ApiResponse("Nome de usuario ya existe.");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 			}
 		}
 
 		userList.add(user);
 
-		ApiResponse response = new ApiResponse("Usuário cadastrado com sucesso!");
+		ApiResponse response = new ApiResponse("Usuario cadastrado com suceso!");
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
@@ -107,7 +107,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<?> getUsers() {
 		if (userList.isEmpty()) {
-			ApiResponse response = new ApiResponse("Lista de usuários está vazia.");
+			ApiResponse response = new ApiResponse("Listas de usuarios está vazias.");
 			return ResponseEntity.ok(response);
 		} else {
 			return ResponseEntity.ok(userList);
@@ -124,7 +124,7 @@ public class UserController {
 
 		userList.clear();
 
-		ApiResponse response = new ApiResponse("Todos os usuários foram deletados sem sucesso!");
+		ApiResponse response = new ApiResponse("Todos os usuários fora deletados sem sucesso!");
 		return ResponseEntity.ok(response);
 	}
 
