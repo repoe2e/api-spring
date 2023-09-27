@@ -11,6 +11,7 @@ Descrição: Permite cadastrar um novo usuário no sistema.
 
 Regras de Negócio:
 - O nome de usuário é obrigatório.
+- O nome completo é obrigatório.
 - O nome de usuário deve ter entre 5 e 20 caracteres.
 - O nome de usuário só pode conter letras.
 - Não é permitido cadastrar um nome de usuário que já exista no sistema.
