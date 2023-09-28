@@ -19,8 +19,8 @@ header h1,h3 {
 
 /* Estilo para o formulário */
 .form-container {
-  max-width: 400px; /* Largura máxima do formulário */
-  margin: 0 auto; /* Centralizar horizontalmente */
+    max-width: 400px; /* Largura máxima do formulário */
+  margin: 20px auto 0; /* Margem superior de 20px para separar do cabeçalho e centralizar horizontalmente */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -50,31 +50,11 @@ form button {
 }
 
 /* Estilo para a lista de usuários */
-main {
-  max-width: 600px; /* Largura máxima da área principal */
-  margin: 0 auto; /* Centralizar horizontalmente */
-  padding: 20px;
-}
-
-main h2 {
-  margin-bottom: 16px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 8px;
-}
 /* Estilo para o rodapé */
 footer {
   background: linear-gradient(to right, #161d16, rgb(0, 128, 64)); /* Gradiente de verde escuro para branco */
   text-align: center;
   padding: 20px 0;
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 
@@ -90,6 +70,28 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Adicione estas linhas para o posicionamento do rodapé */
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+main {
+  margin-bottom: 60px; /* Ajuste essa margem para o tamanho do rodapé */
+}
+main h2 {
+  margin-bottom: 16px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
 }
 
 

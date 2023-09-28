@@ -18,7 +18,7 @@
         
         <img src="imgs/Group.svg" alt="Logo da E2E Treinamentos" class="logo">
          <div class="header-left">
-            <a href="#userList" id="userList" class="user-list-link">Lista de Usuários</a>
+            <a href="#userList" id="userListLink" class="user-list-link">Lista de Usuários</a>
             </div>
     </header>
     <main>
@@ -106,6 +106,15 @@
 		getUsers();
 		const userForm = document.getElementById('userForm');
 		userForm.addEventListener('submit', cadastrarUsuario);
+		
+		 // Adicione um evento de clique ao link "Lista de Usuários"
+        const userListLink = document.getElementById('userListLink');
+        userListLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            getUsers(); // Recarregue a lista de usuários quando o link for clicado
+        });
+		
+		
 	</script>
 </body>
 
