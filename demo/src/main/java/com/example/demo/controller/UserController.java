@@ -62,7 +62,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 
-	/*	if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
+		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 		}
@@ -87,18 +87,18 @@ public class UserController {
 		if (!user.getUsuario().matches("^[a-zA-Z]+$")) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário só pode conter letras.");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}*/
+		}
 
 		for (User existingUser : userList) {
 			if (existingUser.getUsuario().equals(user.getUsuario())) {
-				ApiResponse errorResponse = new ApiResponse("Nome de usuario ya existe.");
+				ApiResponse errorResponse = new ApiResponse("Usuário existente.");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 			}
 		}
 
 		userList.add(user);
 
-		ApiResponse response = new ApiResponse("Usuario cadastrado com suceso!");
+		ApiResponse response = new ApiResponse("Usuário cadastrado com sucesso!");
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
@@ -107,7 +107,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<?> getUsers() {
 		if (userList.isEmpty()) {
-			ApiResponse response = new ApiResponse("Listas de usuarios está vazias.");
+			ApiResponse response = new ApiResponse("Listas de usuarios vazia.");
 			return ResponseEntity.ok(response);
 		} else {
 			return ResponseEntity.ok(userList);
@@ -118,13 +118,13 @@ public class UserController {
 	@DeleteMapping
 	public ResponseEntity<ApiResponse> deletarUsuarios() {
 		if (userList.isEmpty()) {
-			ApiResponse response = new ApiResponse("Lista de usuários já está vazia.");
+			ApiResponse response = new ApiResponse("Lista de usuários vazia.");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 		}
 
 		userList.clear();
 
-		ApiResponse response = new ApiResponse("Todos os usuários fora deletados sem sucesso!");
+		ApiResponse response = new ApiResponse("Todos os usuários foram deletados com sucesso!");
 		return ResponseEntity.ok(response);
 	}
 

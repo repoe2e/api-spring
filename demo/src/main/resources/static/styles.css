@@ -2,13 +2,19 @@
 
 /* Estilo para o cabeçalho */
 header {
-  background-color: #9aff9a; /* Verde claro */
+  background: linear-gradient(to right, #161d16, rgb(0, 128, 64)); /* Gradiente de verde escuro para branco */
   text-align: center;
   padding: 20px 0;
 }
 
-header h1 {
-  color: #000; /* Preto */
+header h1,h3 {
+  color: rgb(255, 255, 255); /* Preto */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: end; /* Mover elementos para a esquerda */
 }
 
 /* Estilo para o formulário */
@@ -38,7 +44,7 @@ form button {
 }
 
 form button {
-  background-color: #9aff9a; /* Verde claro */
+  
   color: #000; /* Preto */
   cursor: pointer;
 }
@@ -64,21 +70,58 @@ li {
 }
 /* Estilo para o rodapé */
 footer {
-  background-color: #9aff9a; /* Verde claro */
+  background: linear-gradient(to right, #161d16, rgb(0, 128, 64)); /* Gradiente de verde escuro para branco */
   text-align: center;
   padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 footer p {
-  color: #000; /* Preto */
+  color: rgb(255, 255, 255); /* Branco */
 }
 
 /* Estilo para o link no rodapé */
 footer a {
-  color: #000; /* Preto */
+  color: rgb(255, 255, 255); /* Branco */
   text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
 }
+
+
+/* Estilo para o link "Lista de Usuários" */
+.user-list-link {
+  color: #FFFFFF; /* Cor do texto */
+  text-decoration: none; /* Remova sublinhado */
+  margin-right: 20px; /* Espaçamento à direita para separar do logo */
+  
+}
+
+
+/* Estilo para a lista de usuários */
+ul#userListUl {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px; /* Espaçamento superior para separar do formulário */
+}
+
+li.user-item {
+    background-color: #f2f2f2; /* Cor de fundo para cada item da lista */
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Espaçamento inferior entre os itens */
+}
+
+li.user-item:hover {
+    background-color: #ddd; /* Cor de fundo quando hover */
+}
+
+/* Estilo para o texto dentro dos itens da lista */
+li.user-item p {
+    margin: 0;
+}
+

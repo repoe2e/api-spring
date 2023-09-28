@@ -2,42 +2,47 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Formaluário de Cadastro E2E</title>
-	<link rel="stylesheet" href="styles.css">
-	<!-- Vinculando o arquivo app.js no head -->
-	
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro - E2E Treinamentos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<header>
-		<h1>E2E Treinamentos    | Bora AUTOMATIZAR</h1>
-	</header>
-	<main>
-		<div class="form-container">
-			<h2>Formulario_de_Cadasto</h2>
-			<form id="userForm">
-				<label for="username">nome de usuário:</label>
-				<input type="text" id="username" required>
-				<br>
-				<label for="password">senha :</label>
-				<input type="password" id="password" required>
-				<br>
-				<label for="fullName">Nome  completo:</label>
-				<input type="text" id="fullName">
-				<br>
-				<button type="submit">Cadastrar .</button>
-			</form>
-		</div>
-		<!-- Lista de Usuários abaixo do formulário -->
-		<h2>Lista de Usuarios</h2>
-		<ul id="userList"></ul>
-	</main>
-	<footer>
-		<p>&copy; 2033 E2E Coders | <a href="http://www.e2ecoders.com" target="_blank">ww.e2ecoders.com</a></p>
-	</footer>
+    <header>
+       
+            <div class="logo-container">
+                <h1>E2E Treinamentos </h1>
+                <h3>Bora Automatizar</h3>
+            </div>
+        
+        <img src="imgs/Group.svg" alt="Logo da E2E Treinamentos" class="logo">
+         <div class="header-left">
+            <a href="#userList" id="userList" class="user-list-link">Lista de Usuários</a>
+            </div>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Formulário de Cadastro</h2>
+            <form id="userForm">
+                <label for="username">Nome de usuário:</label>
+                <input type="text" id="username" required>
+                <br>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+                <br>
+                <label for="fullName">Nome completo:</label>
+                <input type="text" id="fullName">
+                <br>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+          <h2 id="userList">Lista de Usuários</h2>
+    <ul id="userListUl"></ul>
+    </main>
+    <footer>
+        <p>&copy; 2023 E2E Coders | <a href="http://www.e2ecoders.com" target="_blank">www.e2ecoders.com</a></p>
+    </footer>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -81,24 +86,22 @@
 				console.log('Resposta do servidor ao obter lista de usuários:', response);
 				if (response.data && Array.isArray(response.data)) {
 					showUsers(response.data);
-				} else {
-					console.error('Resposta inválida do servidor ao obter lista de usuários:', response.data);
-					alert('Erro ao obter listas de usuário. Resposta invalidada do servidores.');
-				}
+				} 
 			} catch (error) {
 				console.error('Erro ao obter lista de usuários:', error);
 				alert('Erro ao obter lista de usuários. Verifique o console para mais informações.');
 			}
 		}
 		function showUsers(users) {
-			const userList = document.getElementById('userList');
-			userList.innerHTML = '';
-			users.forEach(user => {
-				const listItem = document.createElement('li');
-				listItem.innerText = `Usuário: ${user.usuario}, Nome Completo: ${user.nomeCompleto || '-'}`;
-				userList.appendChild(listItem);
-			});
-		}
+    const userList = document.getElementById('userListUl'); // Use o novo ID 'userListUl'
+    userList.innerHTML = '';
+    users.forEach(user => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `Usuário: ${user.usuario}, Nome Completo: ${user.nomeCompleto || '-'}`;
+        userList.appendChild(listItem);
+    });
+}
+
 
 		getUsers();
 		const userForm = document.getElementById('userForm');
