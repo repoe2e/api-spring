@@ -41,6 +41,6 @@ Representa a resposta da API.
 Propriedades:
 - message (string): A mensagem da resposta.
   
-### Usuário e senha para autenticar api
+### Usuário e senha para autenticar api - APENAS PARA CADASTRO
 USERNAME = "e2etreinamentos";
 PASSWORD = "e2e@123";
