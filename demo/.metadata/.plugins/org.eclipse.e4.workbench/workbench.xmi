@@ -467,7 +467,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_z0IosA7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_SmVJUFZIEe6uzNhiGs35Ew" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_yY9ELw7QEe6ANuTkdUiovw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rDqgwGPDEe66yfE8RNNVag" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_yY9ELw7QEe6ANuTkdUiovw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_z0JPwA7QEe6ANuTkdUiovw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -495,7 +495,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_z0JPxw7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_SmVJXVZIEe6uzNhiGs35Ew" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_yY8dLw7QEe6ANuTkdUiovw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rD0RwGPDEe66yfE8RNNVag" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_yY8dLw7QEe6ANuTkdUiovw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_z0JPyA7QEe6ANuTkdUiovw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -998,6 +998,11 @@
     <bindings xmi:id="_c8aIhDu-Ee6opo1NtNRjOQ" keySequence="ALT+SHIFT+R" command="_yY6BCg7QEe6ANuTkdUiovw"/>
     <bindings xmi:id="_c8avkTu-Ee6opo1NtNRjOQ" keySequence="ALT+SHIFT+V" command="_yY6A4A7QEe6ANuTkdUiovw"/>
   </bindingTables>
+  <bindingTables xmi:id="_qzogsGPDEe66yfE8RNNVag" elementId="de.jcup.jenkinseditor.editors.JenkinsEditor.context" bindingContext="_qzfWyWPDEe66yfE8RNNVag">
+    <bindings xmi:id="_qzyRsGPDEe66yfE8RNNVag" keySequence="CTRL+SHIFT+P" command="_qzfWwmPDEe66yfE8RNNVag"/>
+    <bindings xmi:id="_qzyRsWPDEe66yfE8RNNVag" keySequence="CTRL+7" command="_qzfWw2PDEe66yfE8RNNVag"/>
+    <bindings xmi:id="_qzyRsmPDEe66yfE8RNNVag" keySequence="CTRL+O" command="_qzfWxmPDEe66yfE8RNNVag"/>
+  </bindingTables>
   <rootContext xmi:id="_yWWcGQ7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.contexts.dialogAndWindow" contributorURI="platform:/plugin/org.eclipse.platform" name="In Dialogs and Windows" description="Either a dialog or a window is open">
     <children xmi:id="_yWWcGg7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.contexts.window" contributorURI="platform:/plugin/org.eclipse.platform" name="In Windows" description="A window is open">
       <children xmi:id="_yWWcGw7QEe6ANuTkdUiovw" elementId="org.eclipse.e4.ui.contexts.views" contributorURI="platform:/plugin/org.eclipse.platform" name="%bindingcontext.name.bindingView"/>
@@ -1017,6 +1022,7 @@
         <children xmi:id="_McEqICdvEe66uLO-YxQwrw" elementId="org.egradle.editors.GradleEditor.context" name="Gradle context" description="Editing gradle files"/>
         <children xmi:id="_c8ExUDu-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.inlinesearch.context" name="Inline Search is Active"/>
         <children xmi:id="_c8ExUzu-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.genericeditor.genericEditorContext" name="in CodeTogether Remote Editor" description="When editing in the CodeTogether Remote Editor"/>
+        <children xmi:id="_qzfWyWPDEe66yfE8RNNVag" elementId="de.jcup.jenkinseditor.editors.JenkinsEditor.context" name="Jenkins context" description="Editing jenkins files"/>
       </children>
       <children xmi:id="_yZB8pQ7QEe6ANuTkdUiovw" elementId="org.eclipse.debug.ui.console" name="In I/O Console" description="In I/O console"/>
       <children xmi:id="_yZB8pg7QEe6ANuTkdUiovw" elementId="org.eclipse.tm.terminal.view.ui.TerminalsView" name="In Terminal View" description="Show modified keyboard shortcuts in context menu"/>
@@ -2472,6 +2478,13 @@
   <commands xmi:id="_c8C8LTu-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.codetogether.singleActivation" commandName="Activate File on CodeTogether Host" category="_c76ZQTu-Ee6opo1NtNRjOQ"/>
   <commands xmi:id="_c8C8Lju-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.codetogether.start" commandName="Start Hosting Session" description="Collaborate with CodeTogether" category="_c76ZQTu-Ee6opo1NtNRjOQ"/>
   <commands xmi:id="_dDWeADu-Ee6opo1NtNRjOQ" elementId="com.genuitec.myeclipse.help.darktheme.commandid" commandName="com.genuitec.myeclipse.help.darktheme.commandid"/>
+  <commands xmi:id="_qzfWwmPDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.gotomatchingbracket" commandName="Goto matching bracket" description="Goto matching bracket inside jenkins document" category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWw2PDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.source.toggleComment" commandName="Toggle comment" description="Toggle comment in selected line(s)" category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWxGPDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.fetchLastBuildLogs" commandName="Fetch last build log" description="Fetches last build logs of former build" category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWxWPDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.callLinter" commandName="Validate by Jenkins Linter" description="Validate by Jenkins Linter - done by remote operation on server" category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWxmPDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.quickoutline" commandName="Quick outline" description="Show quick outline dialog" category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWx2PDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.callCustomCLI" commandName="Execute custom cli command" description="Executes a jenkins cli command." category="_qzfWwWPDEe66yfE8RNNVag"/>
+  <commands xmi:id="_qzfWyGPDEe66yfE8RNNVag" elementId="jenkinseditor.editor.commands.replayPipeline" commandName="Replay pipeline script" description="Replay pipeline script on jenkins server" category="_qzfWwWPDEe66yfE8RNNVag"/>
   <addons xmi:id="_yWWcHQ7QEe6ANuTkdUiovw" elementId="org.eclipse.e4.core.commands.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_yWWcHg7QEe6ANuTkdUiovw" elementId="org.eclipse.e4.ui.contexts.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_yWWcHw7QEe6ANuTkdUiovw" elementId="org.eclipse.e4.ui.bindings.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -2483,7 +2496,7 @@
   <addons xmi:id="_yWWcJQ7QEe6ANuTkdUiovw" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_yWWcJg7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_yWsaUA7QEe6ANuTkdUiovw" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_SXlisFZIEe6uzNhiGs35Ew" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_yY4LoA7QEe6ANuTkdUiovw" elementId="org.eclipse.team.ui.category.team" name="Version control (Team)" description="Actions that apply when working with a version control system"/>
   <categories xmi:id="_yY4LoQ7QEe6ANuTkdUiovw" elementId="org.eclipse.ui.category.views" name="Views" description="Commands for opening views"/>
@@ -2526,4 +2539,5 @@
   <categories xmi:id="_c76ZQDu-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.lsp4e.commandCategory" name="Command"/>
   <categories xmi:id="_c76ZQTu-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.codetogether.category" name="CodeTogether" description="CodeTogether Commands"/>
   <categories xmi:id="_c76ZQju-Ee6opo1NtNRjOQ" elementId="com.genuitec.eclipse.inlinesearch.commands.category" name="Inline Search"/>
+  <categories xmi:id="_qzfWwWPDEe66yfE8RNNVag" elementId="jenkinseditor.commands.category" name="Jenkins editor" description="Jenkins editor"/>
 </application:Application>
