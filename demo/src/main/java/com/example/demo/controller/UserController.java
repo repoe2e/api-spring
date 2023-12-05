@@ -256,6 +256,7 @@ public class UserController {
 		// Separa o usuário e a senha das credenciais
 		String[] values = credentials.split(":", 2);
 		String username = values[0];
+		
 		String password = values[1];
 
 		// Verifica a autenticação utilizando o serviço de autenticação
