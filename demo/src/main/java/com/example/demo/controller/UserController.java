@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.ApiResponse;
 import com.example.demo.model.User;
+import com.example.demo.security.JwtTokenGenerator;
 import com.example.demo.service.AuthenticationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,6 +42,13 @@ public class UserController {
 		this.authService = authService;
 	}
 
+	 @Autowired
+	    private ObjectMapper objectMapper;  // Certifique-se de injetar o ObjectMapper
+
+	// Injetando o gerador de tokens JWT
+	@Autowired
+	private JwtTokenGenerator jwtTokenGenerator;
+
 	// Construtor padrão (sem parâmetros)
 	public UserController() {
 		this.userList = new ArrayList<>();
@@ -48,8 +58,6 @@ public class UserController {
 	public UserController(List<User> userList) {
 		this.userList = userList;
 	}
-	
-	
 
 	@ApiOperation("Cadastrar um novo usuário")
 	@PostMapping
@@ -57,10 +65,35 @@ public class UserController {
 			@RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
 
 		// Verifica se o cabeçalho de autorização está presente
-		if (authorizationHeader == null || authorizationHeader.isEmpty()) {
+		
+		 
+		/*if (authorizationHeader == null || authorizationHeader.isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-		}
+		}*/
+		
+
+	    // Verifica se o cabeçalho de autorização está presente e começa com "Basic"
+	    if (authorizationHeader == null || !authorizationHeader.startsWith("Basic ")) {
+	        ApiResponse errorResponse = new ApiResponse("Acesso não autorizado.");
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+	    }
+
+	    // Extrai as credenciais do cabeçalho de autorização (Basic Authentication)
+	    String base64Credentials = authorizationHeader.substring("Basic".length()).trim();
+	    byte[] decoded = Base64.getDecoder().decode(base64Credentials);
+	    String credentials = new String(decoded);
+
+	    // Separa o usuário e a senha das credenciais
+	    String[] values = credentials.split(":", 2);
+	    String username = values[0];
+	    String password = values[1];
+
+	    // Verifica a autenticação utilizando o serviço de autenticação
+	    if (!authService.isAuthenticated(username, password)) {
+	        ApiResponse errorResponse = new ApiResponse("Credenciais inválidas.");
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+	    }
 
 		if (user == null || user.getUsuario() == null || user.getUsuario().trim().isEmpty()) {
 			ApiResponse errorResponse = new ApiResponse("O nome de usuário é obrigatório.");
@@ -101,6 +134,7 @@ public class UserController {
 		ApiResponse response = new ApiResponse("Usuário cadastrado com sucesso!");
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		
 	}
 
 	@ApiOperation("Obter a lista de usuários")
@@ -108,15 +142,87 @@ public class UserController {
 	public ResponseEntity<?> getUsers() {
 		if (userList.isEmpty()) {
 			ApiResponse response = new ApiResponse("Listas de usuarios vazia.");
+			
+			try {
+                // Log para verificar a serialização
+                String jsonResponse = objectMapper.writeValueAsString(response);
+                System.out.println("JSON Response: " + jsonResponse);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
 			return ResponseEntity.ok(response);
 		} else {
 			return ResponseEntity.ok(userList);
 		}
 	}
 
+	/*
+	 * @ApiOperation("Deletar todos os usuários")
+	 * 
+	 * @DeleteMapping public ResponseEntity<ApiResponse> deletarUsuarios() { if
+	 * (userList.isEmpty()) { ApiResponse response = new
+	 * ApiResponse("Lista de usuários vazia."); return
+	 * ResponseEntity.status(HttpStatus.NOT_FOUND).body(response); }
+	 * 
+	 * userList.clear();
+	 * 
+	 * ApiResponse response = new
+	 * ApiResponse("Todos os usuários foram deletados com sucesso!"); return
+	 * ResponseEntity.ok(response); }
+	 * 
+	 */
+
+	/*
+	 * @ApiOperation("Deletar todos os usuários")
+	 * 
+	 * @DeleteMapping public ResponseEntity<ApiResponse> deletarUsuarios(
+	 * 
+	 * @RequestHeader(value = "Authorization", required = false) String
+	 * authorizationHeader) { // Verificar se o cabeçalho de autorização está
+	 * presente if (authorizationHeader == null ||
+	 * !authorizationHeader.startsWith("Bearer ")) { ApiResponse errorResponse = new
+	 * ApiResponse("Token de autorização ausente ou inválido."); return
+	 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse); }
+	 * 
+	 * // Extrair o token da string "Bearer <seu_token>" String token =
+	 * authorizationHeader.substring(7);
+	 * 
+	 * // Verificar se o token fornecido é igual ao token fixo gerado pelo
+	 * JwtTokenGenerator if (!jwtTokenGenerator.generateFixedToken().equals(token))
+	 * { ApiResponse errorResponse = new
+	 * ApiResponse("Token de autorização inválido."); return
+	 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse); }
+	 * 
+	 * // Restante do código permanece o mesmo if (userList.isEmpty()) { ApiResponse
+	 * response = new ApiResponse("Lista de usuários vazia."); return
+	 * ResponseEntity.status(HttpStatus.NOT_FOUND).body(response); }
+	 * 
+	 * userList.clear();
+	 * 
+	 * ApiResponse response = new
+	 * ApiResponse("Todos os usuários foram deletados com sucesso!"); return
+	 * ResponseEntity.ok(response); }
+	 */
 	@ApiOperation("Deletar todos os usuários")
 	@DeleteMapping
-	public ResponseEntity<ApiResponse> deletarUsuarios() {
+	public ResponseEntity<ApiResponse> deletarUsuarios(
+			@RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
+		// Verificar se o cabeçalho de autorização está presente
+		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+			ApiResponse errorResponse = new ApiResponse("Token de autorização ausente ou inválido.");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+		}
+
+		// Extrair o token da string "Bearer <seu_token>"
+		String token = authorizationHeader.substring(7);
+
+		// Validar o token (opcional - dependendo dos requisitos de segurança)
+		if (!jwtTokenGenerator.isValidToken(token)) {
+			ApiResponse errorResponse = new ApiResponse("Token de autorização inválido.");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+		}
+
+		// Lógica para deletar usuários (removida a verificação do token fixo)
 		if (userList.isEmpty()) {
 			ApiResponse response = new ApiResponse("Lista de usuários vazia.");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
@@ -125,6 +231,19 @@ public class UserController {
 		userList.clear();
 
 		ApiResponse response = new ApiResponse("Todos os usuários foram deletados com sucesso!");
+		return ResponseEntity.ok(response);
+		
+	}
+
+	@ApiOperation("Gerar Token")
+	@GetMapping("/token")
+	public ResponseEntity<ApiResponse> gerarToken() {
+		// Lógica para gerar um novo token
+		String token = jwtTokenGenerator.generateToken("username");
+
+		ApiResponse response = new ApiResponse("Token gerado com sucesso!");
+		response.setData(token);
+
 		return ResponseEntity.ok(response);
 	}
 
